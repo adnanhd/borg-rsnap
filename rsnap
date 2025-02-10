@@ -618,7 +618,14 @@ rsync_diff_command() {
          exit 1;
     fi
 
-    echo "For diff, leave the first prompt empty to use the live state (current directory)."
+    echo "Available snapshots for comparison (second snapshot):"
+    local i=1
+    for s in "${snapshots[@]}"; do
+        echo "  $i) $s"
+        ((i++))
+    done
+
+    # echo "For diff, leave the first prompt empty to use the live state (current directory)."
 
     # Prompt for the first snapshot.
     read -rp "Enter the number of the first snapshot for diff (or press Enter for current state): " choice
@@ -636,12 +643,6 @@ rsync_diff_command() {
     fi
 
     # Prompt for the second snapshot (must choose from snapshots).
-    echo "Available snapshots for comparison (second snapshot):"
-    local i=1
-    for s in "${snapshots[@]}"; do
-        echo "  $i) $s"
-        ((i++))
-    done
     read -rp "Enter the number of the snapshot to compare with: " choice
     if ! [[ "$choice" =~ ^[0-9]+$ ]] || [ "$choice" -lt 1 ] || [ "$choice" -gt "${#snapshots[@]}" ]; then
         echo "Invalid selection."
