@@ -418,7 +418,7 @@ purge_command() {
                 fi
                 echo "Prune option --last: The following newest $value snapshots will be removed:"
                 # Newest snapshots are at the end of the list.
-                for (( i = total - value; i < total; i++ )); do
+                for (( i = 0; i < value; i++ )); do
                     echo "- ${data_dir}/${backups[i]}"
                 done
                 ;;
@@ -428,7 +428,7 @@ purge_command() {
                     exit 1
                 fi
                 echo "Prune option --first: The following oldest $value snapshots will be removed:"
-                for (( i = 0; i < value; i++ )); do
+                for (( i = 0; i < total - value; i++ )); do
                     echo "- ${data_dir}/${backups[i]}"
                 done
                 ;;
@@ -493,12 +493,12 @@ purge_command() {
         if [[ "$ans" =~ ^[Yy]$ ]]; then
             case "$mode" in
                 last)
-                    for (( i = total - value; i < total; i++ )); do
+                    for (( i = 0; i < value; i++ )); do
                         rm -rf "${data_dir}/${backups[i]}"
                     done
                     ;;
                 first)
-                    for (( i = 0; i < value; i++ )); do
+                    for (( i = 0; i < total - value; i++ )); do
                         rm -rf "${data_dir}/${backups[i]}"
                     done
                     ;;
