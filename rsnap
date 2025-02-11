@@ -750,9 +750,20 @@ restore_command() {
     snapshot="${snapshots[$((choice-1))]}"
   fi
 
+  # Build exclusion parameters.
+  local exclude_params=()
+  if declare -p EXCLUDES >/dev/null 2>&1; then
+    for ex in "${EXCLUDES[@]}"; do
+      exclude_params+=(--exclude="$ex")
+    done
+  else
+    exclude_params+=(--exclude=".cache" --exclude="tmp" --exclude="__pycache__")
+  fi
+
   local snapshot_path="${data_dir}/${snapshot}"
   echo "Restoring snapshot '${snapshot}' from '${snapshot_path}' to the current directory..."
-  rsync --archive --verbose --delete "${snapshot_path}/" "./"
+  rsync "${snapshot_path}/" "./" \
+      --archive --verbose --delete "${exclude_params[@]}" 
   echo "Restore completed."
 }
 
