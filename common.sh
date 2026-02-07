@@ -1,4 +1,4 @@
-# common.sh - Shared utilities for borg-up and rsnap
+# common.sh - Shared utilities for borgctl and snapctl
 #
 # This file is sourced by the main scripts and command modules.
 # It provides common utility functions used across both tools.

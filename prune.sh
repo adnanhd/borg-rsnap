@@ -1,4 +1,4 @@
-# prune.sh - Shared prune logic for borg-up and rsnap
+# prune.sh - Shared prune logic for borgctl and snapctl
 #
 # This module provides tool-agnostic prune functionality.
 # It requires callbacks to be defined before calling run_prune:
