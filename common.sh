@@ -1,4 +1,4 @@
-# common.sh - Shared utilities for borgctl and snapctl
+# common.sh - Shared utilities for dedupctl and hlinkctl
 #
 # This file is sourced by the main scripts and command modules.
 # It provides common utility functions used across both tools.
