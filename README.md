@@ -12,7 +12,7 @@ Shared shell library for [dedupctl](https://github.com/adnanhd/dedupctl) and [hl
 This library is intended to be used as a git submodule:
 
 ```sh
-git submodule add git@github.com:adnanhd/borg-rsnap.git lib
+git submodule add git@github.com:adnanhd/backuplib.git lib
 ```
 
 Then source the files from your scripts:
